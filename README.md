@@ -46,7 +46,7 @@ mvn spring-boot:run
 Once the application starts, open your browser and go to http://localhost:8080 to view the Todo application.
 
 ## Project Structure
-plaintext
+```plaintext
 todo-application/
 ├── src/
 │   ├── main/
@@ -65,6 +65,7 @@ todo-application/
 │   │   │   └── application.properties
 ├── pom.xml
 └── README.md
+```
 
 
 - **controllers/**: Contains the TaskController for managing requests.
