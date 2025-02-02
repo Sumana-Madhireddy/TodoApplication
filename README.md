@@ -1,4 +1,5 @@
 # Todo Application
+![image](https://github.com/user-attachments/assets/0535f8f8-5a82-4b35-94d6-4bf6e7a53ccf)
 
 A simple, user-friendly Todo application built using Spring Boot, Thymeleaf, and JPA for task management. This application allows users to add, delete, and toggle tasks between completed and pending states.
 
