@@ -96,15 +96,15 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 Here you can add a screenshot or description of your UI.
 
 ## Contributing
-- **Fork the repository.
+- **Fork the repository**.
 
-- **Create a new branch (git checkout -b feature-name).
+- **Create a new branch (git checkout -b feature-name)**.
 
-- **Make your changes and commit them (git commit -am 'Add new feature').
+- **Make your changes and commit them (git commit -am 'Add new feature')**.
 
-- **Push to the branch (git push origin feature-name).
+- **Push to the branch (git push origin feature-name)**.
 
-- **Create a new pull request.
+- **Create a new pull request**.
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
