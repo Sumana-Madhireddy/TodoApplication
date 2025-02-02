@@ -3,6 +3,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Setter;
 
 @Entity
 public class Task {
@@ -11,6 +12,14 @@ public class Task {
     private Long id;
     private String title;
     private boolean completed;
+
+    public Task() {
+    }
+
+    public Task(String title, boolean completed) {
+        this.title = title;
+        this.completed = completed;
+    }
 
     public Long getId() {
         return id;
@@ -24,11 +33,11 @@ public class Task {
         return completed;
     }
 
-    public Task() {
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public Task(String title, boolean completed) {
-        this.title = title;
+    public void setCompleted(boolean completed) {
         this.completed = completed;
     }
 

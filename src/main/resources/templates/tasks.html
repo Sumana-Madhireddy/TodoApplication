@@ -2,17 +2,182 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo Application</title>
+    <style>
+        /* General Styles for Dark Background */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #121212; /* Dark background for developer-friendly theme */
+            color: #e0e0e0; /* Light gray text for easy readability */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-size: 16px;
+        }
+
+        .container {
+            background-color: #1e1e1e; /* Darker container for contrast */
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h1 {
+            color: #8dff80; /* Neon green for the title */
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Input and Button Styling (flexbox layout) */
+        .input-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Space between input and button */
+            margin-bottom: 15px;
+        }
+
+        input[type="text"] {
+            background-color: #2a2a2a; /* Dark input field */
+            color: #f5f5f5; /* Light text for input */
+            border: 2px solid #8dff80; /* Neon green border */
+            border-radius: 8px;
+            padding: 12px;
+            width: 75%; /* Adjust input width */
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #8dff80; /* Neon green button */
+            color: #121212; /* Dark text on button */
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            width: 20%; /* Adjust button width */
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #7cd273; /* Slightly darker green on hover */
+        }
+
+        /* Task List Styles */
+        .task-list {
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        .task {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2a2a2a; /* Dark background for tasks */
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .task:hover {
+            transform: translateY(-5px); /* Slight hover animation */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .task-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Status Styling */
+        .status {
+            padding: 6px 12px;
+            font-size: 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: white;
+            background-color: #ff4c4c; /* Default red for 'Pending' */
+            transition: background-color 0.3s ease;
+        }
+
+        .completed-status {
+            background-color: #4CAF50; /* Green for 'Completed' */
+        }
+
+        .pending-status {
+            background-color: #ff4c4c; /* Red for 'Pending' */
+        }
+
+        /* Buttons for Toggle and Delete */
+        .task-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .toggle-btn, .delete-btn {
+            background-color: #ff5722; /* Orange color for action buttons */
+            color: white;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .toggle-btn:hover, .delete-btn:hover {
+            background-color: #e64a19; /* Darker orange on hover */
+        }
+
+        /* Responsive Styling for Mobile */
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            input[type="text"], button {
+                width: 100%; /* Full width on small screens */
+            }
+
+            .input-container {
+                flex-direction: column; /* Stack input and button vertically on smaller screens */
+            }
+        }
+    </style>
 </head>
 <body>
-<h1>Todo Application</h1>
-    <div>
+<div class="container">
+    <h1>Todo Application</h1>
+    <form action="/" method="post">
+        <div class="input-container">
+            <input type="text" name="title" placeholder="Add new Task..." required>
+            <button type="submit">Add Task</button>
+        </div>
+    </form>
+    <div class="task-list">
         <th:block th:each="task : ${tasks}">
-            <div>
-                <span th:text="${task.title}">Task title</span>
+            <div class="task">
+                <span class="task-title" th:text="${task.title}">Task title</span>
+                <div class="task-actions">
+                    <a th:href="@{/{id}/toggle(id=${task.id})}">
+                        <button class="toggle-btn" th:text="${task.completed} ? 'Completed' : 'Pending'">Complete</button>
+                    </a>
+                    <a th:href="@{/{id}/delete(id=${task.id})}">
+                        <button class="delete-btn">Delete</button>
+                    </a>
+                </div>
             </div>
         </th:block>
-
     </div>
+</div>
 </body>
 </html>
